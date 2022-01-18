@@ -11,9 +11,10 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import os
+import sys
 
-
-with open("C:/Users/marlo/Documents/GitHub/Fundamentos de Analitica/lab---python-basico-Marlondot/data.csv","r") as file:
+with open(os.path.join(sys.path[0],"data.csv"),"r") as file:
     datos=file.readlines()
 
 clean_data=[row.rstrip("\n").split("\t")  for row in datos]

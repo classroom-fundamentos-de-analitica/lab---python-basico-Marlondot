@@ -13,6 +13,14 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 
 
+with open("C:/Users/marlo/Documents/GitHub/Fundamentos de Analitica/lab---python-basico-Marlondot/data.csv","r") as file:
+    datos=file.readlines()
+
+clean_data=[row.rstrip("\n").split("\t")  for row in datos]
+answer=[int(row[1]) for row in clean_data]
+
+print(sum(answer))
+
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
@@ -21,7 +29,9 @@ def pregunta_01():
     214
 
     """
-    return
+    answer=[int(row[1]) for row in clean_data]
+
+    return sum(answer)
 
 
 def pregunta_02():

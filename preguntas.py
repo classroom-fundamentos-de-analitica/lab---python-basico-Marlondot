@@ -85,7 +85,7 @@ def pregunta_03():
 
 
     return answer
-print(pregunta_03())
+
 
 def pregunta_04():
     """
@@ -109,7 +109,18 @@ def pregunta_04():
     ]
 
     """
-    return
+    values=[row[2].split("-")[1] for row in clean_data]
+    valuesSet=set(values)
+    values=list(valuesSet)
+    values.sort()
+
+    answer=list()
+    for value in values:
+        list_per_value=[1 for row in clean_data if row[2].split("-")[1]==value]
+        answer.append((value,sum(list_per_value)))
+
+
+    return answer
 
 
 def pregunta_05():
@@ -127,7 +138,16 @@ def pregunta_05():
     ]
 
     """
-    return
+
+    values=["A","B","C","D","E"]
+    
+    answer=list()
+    for value in values:
+        list_per_value=[int(row[1]) for row in clean_data if row[0]==value]
+        answer.append((value,max(list_per_value),min(list_per_value)))
+
+
+    return answer
 
 
 def pregunta_06():
@@ -152,8 +172,11 @@ def pregunta_06():
     ]
 
     """
-    return
 
+    answer=list()
+    return answer
+print(pregunta_06())
+print(clean_data)
 
 def pregunta_07():
     """

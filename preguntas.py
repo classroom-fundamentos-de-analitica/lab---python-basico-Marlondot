@@ -11,6 +11,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+from optparse import Values
 import os
 import sys
 
@@ -18,9 +19,9 @@ with open(os.path.join(sys.path[0],"data.csv"),"r") as file:
     datos=file.readlines()
 
 clean_data=[row.rstrip("\n").split("\t")  for row in datos]
-answer=[int(row[1]) for row in clean_data]
 
-print(sum(answer))
+
+
 
 def pregunta_01():
     """
@@ -50,7 +51,15 @@ def pregunta_02():
     ]
 
     """
-    return
+
+    Values=["A","B","C","D","E"]
+    answer=list()
+    for letter in Values:
+        list_per_value=[1 for row in clean_data if row[0]==letter]
+        answer.append((letter,sum(list_per_value)))
+
+
+    return answer
 
 
 def pregunta_03():
@@ -68,8 +77,15 @@ def pregunta_03():
     ]
 
     """
-    return
+    Values=["A","B","C","D","E"]
+    answer=list()
+    for letter in Values:
+        list_per_value=[int(row[1]) for row in clean_data if row[0]==letter]
+        answer.append((letter,sum(list_per_value)))
 
+
+    return answer
+print(pregunta_03())
 
 def pregunta_04():
     """

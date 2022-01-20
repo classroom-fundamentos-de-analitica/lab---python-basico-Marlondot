@@ -172,11 +172,18 @@ def pregunta_06():
     ]
 
     """
+    values=[row1.split(":")[0] for row0 in clean_data for row1 in row0[-1].split(",")]
+    values=list(set(values))
+    values.sort()
 
     answer=list()
+    for value in values:
+        list_per_value=[int(row1.split(":")[1]) for row0 in clean_data for row1 in row0[-1].split(",") if row1.split(":")[0]==value]
+        answer.append((value,min(list_per_value),max(list_per_value)))
+
+
     return answer
-print(pregunta_06())
-print(clean_data)
+
 
 def pregunta_07():
     """
@@ -199,7 +206,19 @@ def pregunta_07():
     ]
 
     """
-    return
+    
+    values=[int(row[1]) for row in clean_data]
+    valuesSet=set(values)
+    values=list(valuesSet)
+    values.sort()
+
+    answer=list()
+    for value in values:
+        list_per_value=[row[0] for row in clean_data if int(row[1])==value]
+        answer.append((value,list_per_value))
+
+
+    return answer
 
 
 def pregunta_08():
@@ -224,7 +243,17 @@ def pregunta_08():
     ]
 
     """
-    return
+    values=[int(row[1]) for row in clean_data]
+    valuesSet=set(values)
+    values=list(valuesSet)
+    values.sort()
+
+    answer=list()
+    for value in values:
+        list_per_value=[row[0] for row in clean_data if int(row[1])==value]
+        answer.append((value,sorted(list(set(list_per_value)))))
+
+    return answer
 
 
 def pregunta_09():
@@ -247,7 +276,15 @@ def pregunta_09():
     }
 
     """
-    return
+    values=[row1.split(":")[0] for row0 in clean_data for row1 in row0[-1].split(",")]
+    values=list(set(values))
+    values.sort()
+
+    answer=list()
+    for value in values:
+        list_per_value=[1 for row0 in clean_data for row1 in row0[-1].split(",") if row1.split(":")[0]==value]
+        answer.append((value,sum(list_per_value)))
+    return dict(answer)
 
 
 def pregunta_10():
@@ -268,7 +305,11 @@ def pregunta_10():
 
 
     """
-    return
+    answer=list()
+    for row in clean_data:
+        answer.append((row[0],len(row[-2].split(",")),len(row[-1].split(","))))
+
+    return answer
 
 
 def pregunta_11():
@@ -289,7 +330,15 @@ def pregunta_11():
 
 
     """
-    return
+    values=[row1 for row0 in clean_data for row1 in row0[-2].split(",")]
+    values=list(set(values))
+    values.sort()
+
+    answer=list()
+    for value in values:
+        list_per_value=[int(row0[1]) for row0 in clean_data if value in row0[-2].split(",")]
+        answer.append((value,sum(list_per_value)))
+    return dict(answer)
 
 
 def pregunta_12():
@@ -307,4 +356,13 @@ def pregunta_12():
     }
 
     """
-    return
+
+    values=[row[0] for row in clean_data]
+    values=list(set(values))
+    values.sort()
+
+    answer=list()
+    for value in values:
+        list_per_value=[int(row1.split(":")[1]) for row0 in clean_data for row1 in row0[-1].split(",") if row0[0]==value]
+        answer.append((value,sum(list_per_value)))
+    return dict(answer)
